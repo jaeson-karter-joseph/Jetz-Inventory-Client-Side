@@ -27,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    RouterModule
   ],
   exports: [AppLayoutComponent]
 })
