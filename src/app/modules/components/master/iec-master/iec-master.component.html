@@ -1,0 +1,62 @@
+<form [formGroup]="formGroup">
+
+
+    <div class="card grid sm:row-gap-3">
+        <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+                <input type="text" id="iec" pInputText placeholder="Enter IEC Number" />
+                <label htmlFor="iec">IEC Number</label>
+                <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn" id="iecButton"
+                    aria-label="search"></button>
+            </span>
+        </div>
+        <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+                <input type="text" id="importerName" pInputText placeholder="Enter Impoter Name" />
+                <label htmlFor="importerName">Importer Name</label>
+            </span>
+        </div>
+        <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+                <input type="text" id="gstNumber" pInputText placeholder="Enter GST Number" />
+                <label htmlFor="gstNumber">GST Number</label>
+            </span>
+        </div>
+        <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+                <input type="text" id="panNumber" pInputText placeholder="Enter PAN Number" />
+                <label htmlFor="panNumber">PAN Number</label>
+            </span>
+        </div>
+        <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+                <input type="text" id="emailId" pInputText placeholder="Enter Email ID" />
+                <label htmlFor="emailId">Email ID</label>
+            </span>
+        </div>
+        <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+                <input type="text" id="phoneNumber" pInputText placeholder="Enter Phone Number" />
+                <label htmlFor="phoneNumber">Phone Number</label>
+            </span>
+        </div>
+        <div class="col-12 md:col-6 p-inputgroup">
+            <span class="p-float-label">
+                <textarea id="HOAddress" rows="5" placeholder="Enter Head Office Address" pInputTextarea></textarea>
+                <label for="HOAddress">Head Office Address</label>
+            </span>
+        </div>
+        <div class="col-12 md:col-6 p-fluid">
+            <span class="p-float-label">
+                <p-chips [(ngModel)]="values" id="branch" [ngModelOptions]="{standalone: true}"></p-chips>
+                <label for="branch">Enter Branches & press Return</label>
+            </span>
+        </div>
+    </div>
+
+    <div class="card flex justify-content-center column-gap-3">
+        <p-button label="Save" [loading]="loading" (onClick)="load()"></p-button>
+        <p-button label="Delete" [loading]="loading" (onClick)="load()"></p-button>
+    </div>
+
+</form>

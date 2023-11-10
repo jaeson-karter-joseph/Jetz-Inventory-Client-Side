@@ -18,6 +18,8 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { ChipsModule } from 'primeng/chips';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -40,7 +42,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     DialogModule,
     DropdownModule,
     InputTextareaModule,
-    RadioButtonModule
+    RadioButtonModule,
+    ChipsModule
 
   ]
 })
