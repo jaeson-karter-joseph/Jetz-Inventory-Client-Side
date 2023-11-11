@@ -19,6 +19,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ChipsModule } from 'primeng/chips';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [],
@@ -43,7 +44,8 @@ import { ChipsModule } from 'primeng/chips';
     DropdownModule,
     InputTextareaModule,
     RadioButtonModule,
-    ChipsModule
+    ChipsModule,
+    TooltipModule
 
   ]
 })
