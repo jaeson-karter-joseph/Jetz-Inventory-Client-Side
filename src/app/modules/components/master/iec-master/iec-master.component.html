@@ -1,83 +1,89 @@
-<form [formGroup]="iecForm">
-    <div class="card grid nested-grid ">
-        <div class="col-12">
-            <div class="grid sm:row-gap-3">
-                <div class="col-12 md:col-4 p-inputgroup">
-                    <span class="p-float-label">
-                        <input type="text" id="iec" pInputText placeholder="Enter IEC Number"
-                            formControlName="iceNumber" />
-                        <label htmlFor="iec">IEC Number</label>
-                        <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn" id="iecButton"
-                            aria-label="search"></button>
-                    </span>
-                </div>
-                <div class="col-12 md:col-4 p-inputgroup">
-                    <span class="p-float-label">
-                        <input type="text" id="importerName" pInputText placeholder="Enter Impoter Name"
-                            formControlName="importerName" />
-                        <label htmlFor="importerName">Importer Name</label>
-                    </span>
-                </div>
-                <div class="col-12 md:col-4 p-inputgroup">
-                    <span class="p-float-label">
-                        <input type="text" id="gstNumber" pInputText placeholder="Enter GST Number"
-                            formControlName="gstNumber" />
-                        <label htmlFor="gstNumber">GST Number</label>
-                    </span>
-                </div>
-                <div class="col-12 md:col-4 p-inputgroup">
-                    <span class="p-float-label">
-                        <input type="text" id="panNumber" pInputText placeholder="Enter PAN Number"
-                            formControlName="panNumber" />
-                        <label htmlFor="panNumber">PAN Number</label>
-                    </span>
-                </div>
-                <div class="col-12 md:col-4 p-inputgroup">
-                    <span class="p-float-label">
-                        <input type="text" id="emailId" pInputText placeholder="Enter Email ID"
-                            formControlName="importerEmailId" />
-                        <label htmlFor="emailId">Email ID</label>
-                    </span>
-                </div>
-                <div class="col-12 md:col-4 p-inputgroup">
-                    <span class="p-float-label">
-                        <input type="text" id="phoneNumber" pInputText placeholder="Enter Phone Number"
-                            formControlName="phoneNumber" />
-                        <label htmlFor="phoneNumber">Phone Number</label>
-                    </span>
-                </div>
-                <div class="col-12 p-inputgroup">
-                    <span class="p-float-label">
-                        <textarea id="HOAddress" rows="5" placeholder="Enter Head Office Address" pInputTextarea
-                            formControlName="HOAddress"></textarea>
-                        <label for="HOAddress">Head Office Address</label>
-                    </span>
-                </div>
+<form [formGroup]="iecForm" (ngSubmit)="load()">
+    <div class="card">
+        <div class="flex flex-row mb-3 justify-content-center">
+            <div class="p-inputgroup md:w-6 sm:w-full">
+                <span class="p-float-label">
+                    <input type="text" id="iec" pInputText placeholder="Enter IEC Number" formControlName="iceNumber" />
+                    <label htmlFor="iec">IEC Number</label>
+                    <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn" id="iecButton"
+                        aria-label="search" (click)="searchIEC()"></button>
+                </span>
             </div>
         </div>
-        <div class="col-12">
-            <div formArrayName="branches" class="grid">
-                <div *ngFor="let branch of branches.controls; index as i"
-                    class="col-11 p-inputgroup p-fluid">
-                    <span [formGroupName]="i" class="p-input-icon-left">
-                        <i class="font-bold">{{i+1}}</i>
-                        <input formControlName="branchName" type="text" pInputText
-                            placeholder="Enter Branch Address" />
-                    </span>
-                    <div class="ml-2">
-                        <p-button icon="pi pi-trash"  (onClick)="removeBranch(i)"></p-button>
+        <p-divider styleClass="mb-5"></p-divider>
+        <div *ngIf="isIECFound" class="grid nested-grid ">
+
+            <div class="col-12">
+                <div class="grid sm:row-gap-3">
+
+                    <div class="col-12 md:col-4 p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="importerName" pInputText placeholder="Enter Impoter Name"
+                                formControlName="importerName" />
+                            <label htmlFor="importerName">Importer Name</label>
+                        </span>
+                    </div>
+                    <div class="col-12 md:col-4 p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="gstNumber" pInputText placeholder="Enter GST Number"
+                                formControlName="gstNumber" />
+                            <label htmlFor="gstNumber">GST Number</label>
+                        </span>
+                    </div>
+                    <div class="col-12 md:col-4 p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="panNumber" pInputText placeholder="Enter PAN Number"
+                                formControlName="panNumber" />
+                            <label htmlFor="panNumber">PAN Number</label>
+                        </span>
+                    </div>
+                    <div class="col-12 md:col-4 p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="emailId" pInputText placeholder="Enter Email ID"
+                                formControlName="importerEmailId" />
+                            <label htmlFor="emailId">Email ID</label>
+                        </span>
+                    </div>
+                    <div class="col-12 md:col-4 p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="phoneNumber" pInputText placeholder="Enter Phone Number"
+                                formControlName="phoneNumber" />
+                            <label htmlFor="phoneNumber">Phone Number</label>
+                        </span>
+                    </div>
+                    <div class="col-12 p-inputgroup">
+                        <span class="p-float-label">
+                            <textarea id="HOAddress" rows="5" placeholder="Enter Head Office Address" pInputTextarea
+                                formControlName="HOAddress"></textarea>
+                            <label for="HOAddress">Head Office Address</label>
+                        </span>
                     </div>
                 </div>
-                <div class="col-1 text-center">
-                    <p-button icon="pi pi-plus" pTooltip="Add Branch" tooltipPosition="top" (onClick)="newBranch()"></p-button>
+            </div>
+            <div class="col-12">
+                <div formArrayName="branches" class="grid">
+                    <div *ngFor="let branch of branches.controls; index as i" class="col-11 p-inputgroup p-fluid">
+                        <span [formGroupName]="i" class="p-input-icon-left">
+                            <i class="font-bold">{{i+1}}</i>
+                            <input formControlName="branchName" type="text" pInputText
+                                placeholder="Enter Branch Address" />
+                        </span>
+                        <div class="ml-2">
+                            <p-button icon="pi pi-trash" (onClick)="removeBranch(i)"></p-button>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center">
+                        <p-button icon="pi pi-plus" pTooltip="Add Branch" tooltipPosition="top"
+                            (onClick)="newBranch()"></p-button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="card flex justify-content-center column-gap-3">
-        <p-button label="Save" type="button" [loading]="loading" (onClick)="load()"></p-button>
+    <div *ngIf="isIECFound" class="card flex justify-content-center column-gap-3">
+        <p-button label="Save" type="ngSubmit" [loading]="loading"></p-button>
         <p-button label="Delete" type="button" [loading]="loading" (onClick)="load()"></p-button>
-    </div>
+        <p-button label="Reset" type="button" [loading]="loading" (onClick)="resetForm()"></p-button>
 
+    </div>
 </form>

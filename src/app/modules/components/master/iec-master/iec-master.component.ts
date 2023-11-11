@@ -11,13 +11,14 @@ export class IecMasterComponent implements OnInit {
   loading: boolean = false;
 
   iecForm !: FormGroup;
+  isIECFound: boolean = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.values = ["123", "6hwer"]
+
     this.iecForm = this.formBuilder.group({
-      iceNumber: new FormControl(null),
+      iceNumber: new FormControl(null, [Validators.required]),
       importerName: new FormControl(null),
       gstNumber: new FormControl(null),
       panNumber: new FormControl(null),
@@ -26,7 +27,7 @@ export class IecMasterComponent implements OnInit {
       HOAddress: new FormControl(null),
       branches: this.formBuilder.array([
         this.formBuilder.group({
-          branchName : []
+          branchName: []
         })
       ])
     })
@@ -63,7 +64,19 @@ export class IecMasterComponent implements OnInit {
 
   }
 
+  resetForm(): void {
+    this.iecForm.reset();
+  }
+
   get f(): { [key: string]: AbstractControl } {
     return this.iecForm.controls;
+  }
+
+  checkError = (controlName: string, errorName: string) => {
+    return this.iecForm.controls[controlName].hasError(errorName) && this.iecForm.controls[controlName].dirty ;
+  }
+
+  searchIEC(){
+    this.isIECFound = true;
   }
 }

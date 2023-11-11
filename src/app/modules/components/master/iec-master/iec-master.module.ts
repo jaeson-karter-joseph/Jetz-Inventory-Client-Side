@@ -15,8 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     IecMasterRoutingModule,
     NgprimeModule,
-    FormsModule,
     ReactiveFormsModule
+
   ]
 })
 export class IecMasterModule { }

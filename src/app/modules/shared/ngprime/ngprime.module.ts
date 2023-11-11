@@ -20,6 +20,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ChipsModule } from 'primeng/chips';
 import { TooltipModule } from 'primeng/tooltip';
+import { CalendarModule } from 'primeng/calendar';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [],
@@ -45,7 +47,9 @@ import { TooltipModule } from 'primeng/tooltip';
     InputTextareaModule,
     RadioButtonModule,
     ChipsModule,
-    TooltipModule
+    TooltipModule,
+    CalendarModule,
+    DividerModule
 
   ]
 })
