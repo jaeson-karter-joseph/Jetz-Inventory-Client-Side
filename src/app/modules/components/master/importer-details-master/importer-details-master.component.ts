@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 interface IPort {
   name: string;
@@ -54,12 +54,12 @@ export class ImporterDetailsMasterComponent implements OnInit {
       productModel: new FormControl<string | null>(null),
       containerNumber: new FormControl<string | null>(null),
       containerFeet: new FormControl<number | null>(null),
-
-
-
-
-
-
+      insuranceValidity: new FormControl<Date | null>(new Date()),
+      wareHouses: this.formBuilder.array([
+        this.formBuilder.group({
+          wareHouseName: []
+        })
+      ])
 
     })
   }
@@ -79,5 +79,23 @@ export class ImporterDetailsMasterComponent implements OnInit {
   onReset() {
     this.importerDetailsForm.reset();
   }
+
+  get wareHouses(): FormArray {
+    return this.importerDetailsForm.get("wareHouses") as FormArray
+  }
+
+  newWareHouse() {
+    this.wareHouses.push(
+      this.formBuilder.group({
+        wareHouseName: ['']
+      })
+    )
+  }
+
+
+  removeWareHouse(branchIndex: number) {
+    this.wareHouses.removeAt(branchIndex);
+  }
+
 
 }
