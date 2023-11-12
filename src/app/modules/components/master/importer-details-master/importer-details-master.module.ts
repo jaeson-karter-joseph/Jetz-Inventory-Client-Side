@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ImporterDetailsMasterRoutingModule } from './importer-details-master-routing.module';
 import { ImporterDetailsMasterComponent } from './importer-details-master.component';
 import { NgprimeModule } from 'src/app/modules/shared/ngprime/ngprime.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ImporterDetailsMasterRoutingModule,
     NgprimeModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ImporterDetailsMasterModule { }

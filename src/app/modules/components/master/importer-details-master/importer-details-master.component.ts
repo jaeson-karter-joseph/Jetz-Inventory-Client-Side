@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 interface IPort {
   name: string;
@@ -11,7 +12,9 @@ interface IPort {
   styleUrls: ['./importer-details-master.component.scss']
 })
 export class ImporterDetailsMasterComponent implements OnInit {
-  isBoeFound = false
+  isBoeFound = true;
+  importerDetailsForm !: FormGroup;
+
   ports: IPort[] = [
     { name: 'Australia', code: 'AU' },
     { name: 'Brazil', code: 'BR' },
@@ -28,11 +31,53 @@ export class ImporterDetailsMasterComponent implements OnInit {
   selectedPortOfLoading !: IPort;
   selecetdPortOfDischarge !: IPort;
 
+  constructor(private formBuilder: FormBuilder) { }
+
   ngOnInit() {
+    this.importerDetailsForm = this.formBuilder.group({
+      boeNumber: new FormControl<number | null>(null),
+      boeDate: new FormControl<Date | null>(new Date()),
+      iecNumber: new FormControl<string | null>(null),
+      importerName: new FormControl<string | null>(null),
+      HSNCode: new FormControl<string | null>(null),
+      productQty: new FormControl<number | null>(null),
+      productWeight: new FormControl<number | null>(null),
+      assessableValue: new FormControl<number | null>(null),
+      vesselVoyage: new FormControl<string | null>(null),
+      portOfLoading: new FormControl<IPort | null>(null),
+      portOfDischarge: new FormControl<IPort | null>(null),
+      supplierName: new FormControl<string | null>(null),
+      supplierAddress: new FormControl<string | null>(null),
+      origin: new FormControl<string | null>(null),
+      goodDescription: new FormControl<string | null>(null),
+      productBrand: new FormControl<string | null>(null),
+      productModel: new FormControl<string | null>(null),
+      containerNumber: new FormControl<string | null>(null),
+      containerFeet: new FormControl<number | null>(null),
+
+
+
+
+
+
+
+    })
   }
 
   searchBOE() {
     this.isBoeFound = !this.isBoeFound;
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.importerDetailsForm.controls;
+  }
+
+  onSubmitForm() {
+    console.dir(this.importerDetailsForm.value);
+  }
+
+  onReset() {
+    this.importerDetailsForm.reset();
   }
 
 }

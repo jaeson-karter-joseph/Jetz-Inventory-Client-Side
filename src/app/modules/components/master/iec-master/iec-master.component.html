@@ -62,7 +62,7 @@
             </div>
             <div class="col-12">
                 <div formArrayName="branches" class="grid">
-                    <div *ngFor="let branch of branches.controls; index as i" class="col-11 p-inputgroup p-fluid">
+                    <div *ngFor="let branch of branches.controls; index as i" class="fadeinleft fadeout  animation-duration-500 animation-ease-in-out col-11 p-inputgroup p-fluid">
                         <span [formGroupName]="i" class="p-input-icon-left">
                             <i class="font-bold">{{i+1}}</i>
                             <input formControlName="branchName" type="text" pInputText
