@@ -1,4 +1,4 @@
-$gutter: 1rem; 
+$gutter: 1rem;
 
 @import "assets/layout//styles/layout/layout.scss";
 
@@ -10,4 +10,8 @@ $gutter: 1rem;
 .p-inputtext{
     background-color: transparent;
     width: 100%;
+}
+
+.p-tooltip-text{
+  font-size: small;
 }

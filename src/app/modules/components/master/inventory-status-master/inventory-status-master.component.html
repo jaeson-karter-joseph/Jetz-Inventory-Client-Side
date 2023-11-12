@@ -1,0 +1,104 @@
+<div class="card">
+  <p-toast></p-toast>
+
+  <div class="flex flex-column md:flex-row gap-3">
+    <div class="p-inputgroup">
+      <input type="text" pInputText placeholder="Enter IEC Number" />
+      <button aria-label="IECSearch" type="button" pButton icon="pi pi-search"></button>
+    </div>
+  </div>
+
+
+  <p-table #dt [value]="boeData" [rows]="5" [paginator]="true"
+    [globalFilterFields]="['boe', 'boeDate', 'qty', 'brand', 'wareHouse', 'inventoryStatus']"
+    [tableStyle]="{ 'min-width': '70rem' }" [rowHover]="true" dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <h5 class="m-0">Total QTY :
+          <p-tag [value]="this.calculateTotalQty.toString()" styleClass="text-2xl"></p-tag>
+        </h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+
+          <input pInputText type="text" #textInput (input)="dt.filterGlobal(textInput.value, 'contains')"
+            placeholder="Search..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="boe" style="min-width:6rem">BOE <p-sortIcon field="boe"></p-sortIcon></th>
+        <th pSortableColumn="boeDate" style="min-width:9rem">BOE Date <p-sortIcon field="boeDate"></p-sortIcon></th>
+        <th pSortableColumn="qty" style="min-width:6rem">QTY <p-sortIcon field="qty"></p-sortIcon></th>
+        <th pSortableColumn="inventoryStatus" style="min-width:5rem">Status<p-sortIcon
+            field="inventoryStatus"></p-sortIcon></th>
+        <th pSortableColumn="brand" style="min-width:7rem">Brand <p-sortIcon field="brand"></p-sortIcon></th>
+        <th pSortableColumn="wareHouse" style="min-width:7rem">WareHouse <p-sortIcon field="wareHouse"></p-sortIcon>
+        </th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+
+        <td>{{ product.boe }}</td>
+        <td>{{ product.boeDate | date }}</td>
+        <td>{{ product.qty }}</td>
+        <td>
+          <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag>
+        </td>
+        <td>{{ product.brand }}</td>
+
+        <td style="line-break: anywhere;">{{ product.wareHouse }}</td>
+        <td>
+          <button aria-label="deliveryBtn" type="button" pButton pRipple icon="pi pi-truck" pTooltip="Add Delivery"
+            class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="productDialog" header="Delivery Details" [modal]="true" styleClass="p-fluid sm:w-11 sm:h-full">
+  <ng-template pTemplate="content">
+    <div class="formgrid grid">
+      <div class="field col-12 md:col-6 lg:col-3">
+        <label class="block font-bold mb-2" for="dateOfLoading">Date Of Loading</label>
+        <p-calendar inputId="dateOfLoading" [showButtonBar]="true" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+      <div class="field col-12 md:col-6 lg:col-3">
+        <label class="block font-bold mb-2" for="dateOfDelivery">Date Of Delivery</label>
+        <p-calendar inputId="dateOfDelivery" [showButtonBar]="true" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+
+
+      <div class="field col-12 md:col-6 lg:col-3">
+        <label class="block font-bold mb-2" for="delveryQty">Delivery QTY</label>
+        <p-inputNumber [placeholder]="'Max '+this.boe.qty.toString()" inputId="delveryQty" [useGrouping]="false">
+        </p-inputNumber>
+
+      </div>
+      <div class="field col-12 md:col-6 lg:col-3">
+        <label class="block font-bold mb-2" for="VehicleNumber">Vehicle Number</label>
+        <input type="text" pInputText id="VehicleNumber" required />
+      </div>
+
+      <div class="field col-12">
+        <p-dropdown [options]="branches" [(ngModel)]="branch" placeholder="Select a Branch" [editable]="true"
+          optionLabel="name"></p-dropdown>
+
+      </div>
+    </div>
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button aria-label="Cancel" type="button" pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+      (click)="hideDialog()"></button>
+    <button aria-label="Save" type="button" pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+      (click)="saveProduct()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
