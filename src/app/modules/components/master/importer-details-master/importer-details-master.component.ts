@@ -37,6 +37,7 @@ export class ImporterDetailsMasterComponent implements OnInit {
     this.importerDetailsForm = this.formBuilder.group({
       boeNumber: new FormControl<number | null>(null),
       boeDate: new FormControl<Date | null>(new Date()),
+      dateOfArrival: new FormControl<Date | null>(new Date()),
       iecNumber: new FormControl<string | null>(null),
       importerName: new FormControl<string | null>(null),
       HSNCode: new FormControl<string | null>(null),
@@ -53,7 +54,11 @@ export class ImporterDetailsMasterComponent implements OnInit {
       productBrand: new FormControl<string | null>(null),
       productModel: new FormControl<string | null>(null),
       containerNumber: new FormControl<string | null>(null),
-      containerFeet: new FormControl<number | null>(null),
+      dateOfDestuffing: new FormControl<Date | null>(new Date()),
+      blNumber: new FormControl<string | null>(null),
+      blDate: new FormControl<Date | null>(new Date()),
+      invoiceNumber: new FormControl<string | null>(null),
+      invoiceDate: new FormControl<Date | null>(new Date()),
       insuranceValidity: new FormControl<Date | null>(new Date()),
       wareHouses: this.formBuilder.array([
         this.formBuilder.group({

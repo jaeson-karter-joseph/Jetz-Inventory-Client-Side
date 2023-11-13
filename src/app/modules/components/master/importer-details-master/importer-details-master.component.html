@@ -26,31 +26,13 @@
           class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
       </div>
       <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="HSNCode">HSN Code</label>
-        <input formControlName="HSNCode" pInputText id="HSNCode" type="text" pInputText
-          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        <label class="block font-bold mb-2" for="dateOfArrival">Date of Arrival</label>
+        <p-calendar formControlName="dateOfArrival" inputId="dateOfArrival" [showButtonBar]="true"
+          dateFormat="dd/mm/yy"></p-calendar>
       </div>
       <div class="field col-12 md:col-3 lg:col-2 ">
-        <div class="flex-auto">
-          <label class="block font-bold mb-2" class="block font-bold mb-2" for="qty">QTY</label>
-          <p-inputNumber formControlName="productQty" inputId="qty" [useGrouping]="false"> </p-inputNumber>
-        </div>
-      </div>
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="Weight">Weight(Kgs)</label>
-        <p-inputNumber formControlName="productWeight" inputId="Weight" mode="decimal" locale="en-IN"
-          [useGrouping]="false" [minFractionDigits]="2">
-        </p-inputNumber>
-      </div>
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="assessableValue">Assessable Value</label>
-        <p-inputNumber formControlName="assessableValue" mode="currency" inputId="assessableValue" currency="INR"
-          currencyDisplay="code" locale="en-IN">
-        </p-inputNumber>
-      </div>
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="vesselvoyage">Vessel Voyage</label>
-        <input formControlName="vesselVoyage" pInputText id="vesselvoyage" type="text" pInputText
+        <label class="block font-bold mb-2" for="origin">Country of Origin</label>
+        <input formControlName="origin" id="origin" type="text" pInputText
           class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
       </div>
       <div class="field col-12 md:col-3 lg:col-2 ">
@@ -67,6 +49,57 @@
           </ng-template>
         </p-dropdown>
       </div>
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <div class="flex-auto">
+          <label class="block font-bold mb-2" class="block font-bold mb-2" for="blNumber">BL Number</label>
+          <input formControlName="blNumber" pInputText id="blNumber" type="text" pInputText
+            class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+      </div>
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <label class="block font-bold mb-2" for="blDate">BL Date</label>
+        <p-calendar formControlName="blDate" inputId="blDate" [showButtonBar]="true" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <div class="flex-auto">
+          <label class="block font-bold mb-2" class="block font-bold mb-2" for="qty">Numebr of Reels</label>
+          <p-inputNumber formControlName="productQty" inputId="qty" [useGrouping]="false"> </p-inputNumber>
+        </div>
+      </div>
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <label class="block font-bold mb-2" for="Weight">Gross Weight(Kgs)</label>
+        <p-inputNumber formControlName="productWeight" inputId="Weight" mode="decimal" locale="en-IN"
+          [useGrouping]="false" [minFractionDigits]="2">
+        </p-inputNumber>
+      </div>
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <label class="block font-bold mb-2" for="invoiceNumber">Invoice Number</label>
+        <input formControlName="invoiceNumber" pInputText id="invoiceNumber" type="text" pInputText
+          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <label class="block font-bold mb-2" for="blDate">Invoice Date</label>
+        <p-calendar formControlName="blDate" inputId="blDate" [showButtonBar]="true" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <label class="block font-bold mb-2" for="HSNCode">HSN Code</label>
+        <input formControlName="HSNCode" pInputText id="HSNCode" type="text" pInputText
+          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+
+
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <label class="block font-bold mb-2" for="assessableValue">Assessable Value</label>
+        <p-inputNumber formControlName="assessableValue" mode="currency" inputId="assessableValue" currency="INR"
+          currencyDisplay="code" locale="en-IN">
+        </p-inputNumber>
+      </div>
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <label class="block font-bold mb-2" for="vesselvoyage">Vessel Voyage</label>
+        <input formControlName="vesselVoyage" pInputText id="vesselvoyage" type="text" pInputText
+          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+
       <div class="field col-12 md:col-3 lg:col-2 ">
         <label class="block font-bold mb-2" for="PortOfDischarge">Port Of Discharge</label>
         <p-dropdown formControlName="portOfDischarge" [options]="ports" optionLabel="name" [editable]="true"
@@ -97,11 +130,7 @@
         <textarea formControlName="supplierAddress" pInputTextarea rows="1" id="supplierAddress" type="text"
           class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
       </div>
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="origin">Origin</label>
-        <input formControlName="origin" id="origin" type="text" pInputText
-          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
+
       <div class="field col-12 md:col-3 lg:col-2 ">
         <label class="block font-bold mb-2" for="description">Goods Description</label>
         <textarea formControlName="goodDescription" pInputTextarea rows="1" id="description" type="text"
@@ -118,14 +147,15 @@
           class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
       </div>
       <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="ContainerNumber">Container Number</label>
+        <label class="block font-bold mb-2" for="ContainerNumber">Number of Containers</label>
         <input formControlName="containerNumber" id="ContainerNumber" type="text" pInputText
           class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
       </div>
       <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="ContainerFeet">Container Feet</label>
-        <input formControlName="containerFeet" id="ContainerFeet" type="text" pInputText
-          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        <label class="block font-bold mb-2" for="dateOfDestuffing">Destuffing Date</label>
+        <p-calendar formControlName="dateOfDestuffing" inputId="dateOfDestuffing" [showButtonBar]="true"
+          dateFormat="dd/mm/yy"></p-calendar>
+
       </div>
       <div class="field col-12 md:col-3 lg:col-2 ">
         <label class="block font-bold mb-2" for="insuranceValidity">Insurance Validity</label>
@@ -159,4 +189,3 @@
     <p-button label="Reset" type="button" (onClick)="onReset()"></p-button>
   </div>
 </form>
-
