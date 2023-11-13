@@ -32,7 +32,10 @@
               "./node_modules/primeflex/themes/primeone-dark.scss",
               "./node_modules/primeicons/primeicons.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/pdfmake/build/pdfmake.min.js",
+							"./node_modules/pdfmake/build/vfs_fonts.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,65 @@
+<form [formGroup]="devliveryInvoiceForm">
+  <div class="card">
+    <div class="formgrid grid">
+      <div class="field col-12 md:col-6 lg:col-4">
+        <label for="iecNumber">IEC Number</label>
+        <input formControlName="iecNumber" id="iecNumber" type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field col-12 md:col-6 lg:col-4">
+        <label for="boeNumber">BOE</label>
+        <input formControlName="boeNumber" id="boeNumber" type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field col-12 md:col-6 lg:col-4">
+        <label for="boeDate">BOE Date</label>
+        <input formControlName="boeDate" id="boeDate" type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field col-12 md:col-6 lg:col-4">
+        <label for="importerName">Importer Name</label>
+        <input formControlName="importerName" id="importerName" type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field col-12 md:col-6 lg:col-4">
+        <label for="supplierName">Supplier Name</label>
+        <input formControlName="supplierName" id="supplierName" type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field col-12 md:col-6 lg:col-4">
+        <label for="vehicleNumber">Vehicle Number</label>
+        <input formControlName="vehicleNumber" id="vehicleNumber" type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field col-12">
+        <label for="goodsDesc">Goods Description</label>
+        <textarea formControlName="goodsDesc" id="goodsDesc" type="text" rows="3"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+      </div>
+    </div>
+
+    <p-table styleClass="p-datatable-gridlines" [columns]="cols" [value]="products"
+      [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="text-center" *ngFor="let col of columns">
+            {{ col.header }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td class="text-center" *ngFor="let col of columns">
+            {{ rowData[col.field] }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</form>
+
+<div class="fadein  animation-duration-1500 card  flex justify-content-center column-gap-3 mt-4">
+  <p-button label="Open Invoice" type="button" (onClick)="generatePDF('open')"></p-button>
+  <p-button label="Download Invoice" type="button" (onClick)="generatePDF('download')"></p-button>
+  <p-button label="Print Invoice" type="button" (onClick)="generatePDF('print')"></p-button>
+</div>

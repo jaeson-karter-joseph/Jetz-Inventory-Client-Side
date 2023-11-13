@@ -26,10 +26,13 @@ export class MenuComponent implements OnInit {
           { label: 'IEC Master', icon: 'pi pi-fw pi-eject', routerLink: ['/master/iecMaster'] },
           { label: 'Importer Details Master', icon: 'pi pi-fw pi-map-marker', routerLink: ['/master/importerDetailsMaster'] },
           { label: 'Inventory Status Master', icon: 'pi pi-fw pi-ticket', routerLink: ['/master/inventoryStatusMaster'] },
-
-
           //{ label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/master/unitMaster'], routerLinkActiveOptions: { paths: 'subset', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' } },
-
+        ]
+      },
+      {
+        label: 'Invoice',
+        items: [
+          { label: 'Invoice Details', icon: 'pi pi-fw pi-wallet', routerLink: ['/invoice/generateInvoice'] },
         ]
       },
       // {
