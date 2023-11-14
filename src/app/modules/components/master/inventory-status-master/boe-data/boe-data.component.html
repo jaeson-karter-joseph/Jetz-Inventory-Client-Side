@@ -1,1 +1,103 @@
-<p>boe-data works!</p>
+<div class="card">
+  <div class="flex flex-column md:flex-row gap-3">
+    <div class="p-inputgroup">
+      <input type="text" pInputText placeholder="Enter BOE Number" />
+      <button aria-label="IECSearch" type="button" pButton icon="pi pi-search"></button>
+    </div>
+  </div>
+
+  <div class="formgrid grid mt-2 p-fluid">
+    <div class="field col-12 md:col-3 lg:col-2 ">
+      <label class="block font-bold mb-2" for="blNumber">BL NO</label>
+      <input id="blNumber" type="text" rows="4" pInputText
+        class="text-base text-color surface-overlay border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
+    </div>
+    <div class="field col-12 md:col-3 lg:col-2 ">
+      <label class="block font-bold mb-2" for="blDate">BL Date</label>
+      <p-calendar  inputId="blDate" [showButtonBar]="true"
+        dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+    <div class="field col-12 md:col-3 lg:col-2 ">
+      <label class="block font-bold mb-2" for="boeDate">BOE Date</label>
+      <p-calendar  inputId="boeDate" [showButtonBar]="true"
+        dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+    <div class="field col-12 md:col-3 lg:col-2 ">
+      <label class="block font-bold mb-2" for="arrivalDate">Arrival Date</label>
+      <p-calendar  inputId="arrivalDate" [showButtonBar]="true"
+        dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+    <div class="field col-12 md:col-3 lg:col-2 ">
+      <label class="block font-bold mb-2" for="invoiceNumber">Invoice NO</label>
+      <input id="invoiceNumber" type="text" rows="4" pInputText
+        class="text-base text-color surface-overlay border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
+    </div>
+    <div class="field col-12 md:col-3 lg:col-2 ">
+      <label class="block font-bold mb-2" for="invoiceDate">Invoice Date</label>
+      <p-calendar  inputId="invoiceDate" [showButtonBar]="true"
+        dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+    <div class="field col-12 md:col-3 lg:col-2 ">
+      <label class="block font-bold mb-2" for="currentWareHouse">Current WareHouse</label>
+      <input id="currentWareHouse" type="text" rows="4" pInputText
+        class="text-base text-color surface-overlay border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
+    </div>
+  </div>
+
+
+
+  <p-table #dt [value]="boeData" [rows]="5" [paginator]="true"
+    [globalFilterFields]="['boe', 'boeDate', 'qty', 'brand', 'wareHouse', 'inventoryStatus','blNumber','blDate','weight']"
+    [tableStyle]="{ 'min-width': '90rem' }" [rowHover]="true" dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <h5 class="m-0">Total QTY :
+          <p-tag [value]="this.calculateTotalQty.toString()" styleClass="text-2xl"></p-tag>
+        </h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+
+          <input pInputText type="text" #textInput (input)="dt.filterGlobal(textInput.value, 'contains')"
+            placeholder="Search..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="blNumber" style="min-width:6rem">BL <p-sortIcon field="blNumber"></p-sortIcon></th>
+        <th pSortableColumn="blDate" style="min-width:9rem">BL Date <p-sortIcon field="blDate"></p-sortIcon></th>
+        <th pSortableColumn="boe" style="min-width:6rem">BOE <p-sortIcon field="boe"></p-sortIcon></th>
+        <th pSortableColumn="boeDate" style="min-width:9rem">BOE Date <p-sortIcon field="boeDate"></p-sortIcon></th>
+        <th pSortableColumn="qty" style="min-width:6rem">No. of Reels <p-sortIcon field="qty"></p-sortIcon></th>
+        <th pSortableColumn="inventoryStatus" style="min-width:5rem">Status<p-sortIcon
+            field="inventoryStatus"></p-sortIcon></th>
+        <th pSortableColumn="weight" style="min-width:6rem">Weight<p-sortIcon field="weight"></p-sortIcon></th>
+        <th pSortableColumn="brand" style="min-width:7rem">Brand <p-sortIcon field="brand"></p-sortIcon></th>
+        <th pSortableColumn="wareHouse" style="min-width:7rem">WareHouse <p-sortIcon field="wareHouse"></p-sortIcon>
+        </th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{ product.blNumber }}</td>
+        <td>{{ product.blDate | date }}</td>
+        <td>{{ product.boe }}</td>
+        <td>{{ product.boeDate | date }}</td>
+        <td>{{ product.qty }}</td>
+        <td>
+          <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag>
+        </td>
+        <td>{{ product.weight }}</td>
+        <td>{{ product.brand }}</td>
+
+        <td style="line-break: anywhere;">{{ product.wareHouse }}</td>
+        <td>
+          <button aria-label="deliveryBtn" type="button" pButton pRipple icon="pi pi-truck" pTooltip="Add Delivery"
+            class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
