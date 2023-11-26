@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
-interface IPort {
+interface IDropDown {
   name: string;
   code: string;
 }
+
 
 @Component({
   selector: 'app-importer-details-master',
@@ -15,7 +16,7 @@ export class ImporterDetailsMasterComponent implements OnInit {
   isBoeFound = true;
   importerDetailsForm !: FormGroup;
 
-  ports: IPort[] = [
+  ports: IDropDown[] = [
     { name: 'Australia', code: 'AU' },
     { name: 'Brazil', code: 'BR' },
     { name: 'China', code: 'CN' },
@@ -28,8 +29,47 @@ export class ImporterDetailsMasterComponent implements OnInit {
     { name: 'United States', code: 'US' }
   ];
 
-  selectedPortOfLoading !: IPort;
-  selecetdPortOfDischarge !: IPort;
+  supppliers: IDropDown[] = [
+    { name: 'Supplier 1', code: 'S1' },
+    { name: 'Supplier 2', code: 'S2' },
+    { name: 'Supplier 3', code: 'S3' },
+    { name: 'Supplier 4', code: 'S4' },
+    { name: 'Supplier 5', code: 'S5' },
+    { name: 'Supplier 6', code: 'S6' },
+    { name: 'Supplier 7', code: 'S7' },
+    { name: 'Supplier 8', code: 'S8' },
+    { name: 'Supplier 9', code: 'S9' },
+    { name: 'Supplier 10', code: 'S10' }
+  ]
+
+  wareHouseData: IDropDown[] = [
+    { name: 'WareHouse 1', code: 'W1' },
+    { name: 'WareHouse 2', code: 'W2' },
+    { name: 'WareHouse 3', code: 'W3' },
+    { name: 'WareHouse 4', code: 'W4' },
+    { name: 'WareHouse 5', code: 'W5' },
+    { name: 'WareHouse 6', code: 'W6' },
+    { name: 'WareHouse 7', code: 'W7' },
+    { name: 'WareHouse 8', code: 'W8' },
+    { name: 'WareHouse 9', code: 'W9' },
+    { name: 'WareHouse 10', code: 'W10' }
+  ]
+
+  productData: IDropDown[] = [
+    { name: 'Product 1', code: 'P1' },
+    { name: 'Product 2', code: 'P2' },
+    { name: 'Product 3', code: 'P3' },
+    { name: 'Product 4', code: 'P4' },
+    { name: 'Product 5', code: 'P5' },
+    { name: 'Product 6', code: 'P6' },
+    { name: 'Product 7', code: 'P7' },
+    { name: 'Product 8', code: 'P8' },
+    { name: 'Product 9', code: 'P9' },
+    { name: 'Product 10', code: 'P10' }
+  ]
+
+  selectedPortOfLoading !: IDropDown;
+  selecetdPortOfDischarge !: IDropDown;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -40,19 +80,15 @@ export class ImporterDetailsMasterComponent implements OnInit {
       dateOfArrival: new FormControl<Date | null>(new Date()),
       iecNumber: new FormControl<string | null>(null),
       importerName: new FormControl<string | null>(null),
-      HSNCode: new FormControl<string | null>(null),
-      productQty: new FormControl<number | null>(null),
-      productWeight: new FormControl<number | null>(null),
-      assessableValue: new FormControl<number | null>(null),
       vesselVoyage: new FormControl<string | null>(null),
-      portOfLoading: new FormControl<IPort | null>(null),
-      portOfDischarge: new FormControl<IPort | null>(null),
-      supplierName: new FormControl<string | null>(null),
+      portOfLoading: new FormControl<IDropDown | null>(null),
+      portOfDischarge: new FormControl<IDropDown | null>(null),
+      supplierName: new FormControl<IDropDown | null>(null),
       supplierAddress: new FormControl<string | null>(null),
       origin: new FormControl<string | null>(null),
-      goodDescription: new FormControl<string | null>(null),
-      productBrand: new FormControl<string | null>(null),
-      productModel: new FormControl<string | null>(null),
+      wareHouse: new FormControl<IDropDown | null>(null),
+
+
       containerNumber: new FormControl<string | null>(null),
       dateOfDestuffing: new FormControl<Date | null>(new Date()),
       blNumber: new FormControl<string | null>(null),
@@ -60,9 +96,17 @@ export class ImporterDetailsMasterComponent implements OnInit {
       invoiceNumber: new FormControl<string | null>(null),
       invoiceDate: new FormControl<Date | null>(new Date()),
       insuranceValidity: new FormControl<Date | null>(new Date()),
-      wareHouses: this.formBuilder.array([
+
+      boeProductDetails: this.formBuilder.array([
         this.formBuilder.group({
-          wareHouseName: []
+          productHSNCode: new FormControl<string | null>(null),
+          productName: new FormControl<IDropDown | null>(null),
+          productBrand: new FormControl<string | null>(null),
+          productModel: new FormControl<string | null>(null),
+          productDescription: new FormControl<string | null>(null),
+          productQty: new FormControl<number | null>(null),
+          productWeight: new FormControl<number | null>(null),
+          assessableValue: new FormControl<number | null>(null)
         })
       ])
 
@@ -85,21 +129,27 @@ export class ImporterDetailsMasterComponent implements OnInit {
     this.importerDetailsForm.reset();
   }
 
-  get wareHouses(): FormArray {
-    return this.importerDetailsForm.get("wareHouses") as FormArray
+  get boeProductDetails(): FormArray {
+    return this.importerDetailsForm.get("boeProductDetails") as FormArray;
   }
 
-  newWareHouse() {
-    this.wareHouses.push(
+  newBoeProductDetails() {
+    this.boeProductDetails.push(
       this.formBuilder.group({
-        wareHouseName: ['']
+        productHSNCode: new FormControl<string | null>(null),
+        productName: new FormControl<IDropDown | null>(null),
+        productBrand: new FormControl<string | null>(null),
+        productModel: new FormControl<string | null>(null),
+        productDescription: new FormControl<string | null>(null),
+        productQty: new FormControl<number | null>(null),
+        productWeight: new FormControl<number | null>(null),
+        assessableValue: new FormControl<number | null>(null)
       })
     )
   }
 
-
-  removeWareHouse(branchIndex: number) {
-    this.wareHouses.removeAt(branchIndex);
+  removeBoeProductDetails(branchIndex: number) {
+    this.boeProductDetails.removeAt(branchIndex);
   }
 
 

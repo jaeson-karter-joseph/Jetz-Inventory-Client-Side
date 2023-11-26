@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MasterRoutingModule } from './master-routing.module';
 import { NgprimeModule } from '../../shared/ngprime/ngprime.module';
+import { IecService } from './services/iec.service';
+import { IecEndpointService } from './services/iec-endpoint.service';
 
 
 
@@ -13,7 +15,7 @@ import { NgprimeModule } from '../../shared/ngprime/ngprime.module';
   imports: [
     CommonModule,
     MasterRoutingModule,
+  ],
 
-  ]
 })
 export class MasterModule { }

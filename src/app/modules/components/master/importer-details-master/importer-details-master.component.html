@@ -11,9 +11,21 @@
     <p-divider></p-divider>
     <div *ngIf="isBoeFound" class="fadein  animation-duration-1500 formgrid grid p-fluid">
       <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="boeDate">Date</label>
+        <label class="block font-bold mb-2" for="boeDate">BOE Date</label>
         <p-calendar formControlName="boeDate" inputId="boeDate" [showButtonBar]="true"
           dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <div class="flex-auto">
+          <label class="block font-bold mb-2" class="block font-bold mb-2" for="blNumber">BL Number</label>
+          <input formControlName="blNumber" pInputText id="blNumber" type="text" pInputText
+            class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+      </div>
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <label class="block font-bold mb-2" for="blDate">BL Date</label>
+        <p-calendar formControlName="blDate" inputId="blDate" [showButtonBar]="true" dateFormat="dd/mm/yy"></p-calendar>
       </div>
       <div class="field col-12 md:col-3 lg:col-2 ">
         <label class="block font-bold mb-2" for="iec">IEC</label>
@@ -29,6 +41,17 @@
         <label class="block font-bold mb-2" for="dateOfArrival">Date of Arrival</label>
         <p-calendar formControlName="dateOfArrival" inputId="dateOfArrival" [showButtonBar]="true"
           dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+      <div class="field col-12 md:col-3 lg:col-2 ">
+        <label class="block font-bold mb-2" for="SupplierName">Supplier Name</label>
+        <p-dropdown formControlName="supplierName" [options]="supppliers" [editable]="true" optionLabel="name"
+          filterBy="name" [showClear]="true" placeholder="Select Supplier">
+          <ng-template let-supplier pTemplate="item">
+            <div class="flex align-items-center gap-2">
+              <div>{{ supplier.name }}</div>
+            </div>
+          </ng-template>
+        </p-dropdown>
       </div>
       <div class="field col-12 md:col-3 lg:col-2 ">
         <label class="block font-bold mb-2" for="origin">Country of Origin</label>
@@ -50,28 +73,24 @@
         </p-dropdown>
       </div>
       <div class="field col-12 md:col-3 lg:col-2 ">
-        <div class="flex-auto">
-          <label class="block font-bold mb-2" class="block font-bold mb-2" for="blNumber">BL Number</label>
-          <input formControlName="blNumber" pInputText id="blNumber" type="text" pInputText
-            class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-        </div>
+        <label class="block font-bold mb-2" for="supplierAddress">Supplier Address</label>
+        <textarea formControlName="supplierAddress" pInputTextarea rows="1" id="supplierAddress" type="text"
+          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
       </div>
+
       <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="blDate">BL Date</label>
-        <p-calendar formControlName="blDate" inputId="blDate" [showButtonBar]="true" dateFormat="dd/mm/yy"></p-calendar>
+        <label class="block font-bold mb-2" for="wareHouse">WareHouse</label>
+        <p-dropdown formControlName="wareHouse" [options]="wareHouseData" [editable]="true" optionLabel="name"
+          filterBy="name" [showClear]="true" placeholder="Select WareHouse">
+          <ng-template let-wareHouse pTemplate="item">
+            <div class="flex align-items-center gap-2">
+              <div>{{ wareHouse.name }}</div>
+            </div>
+          </ng-template>
+        </p-dropdown>
       </div>
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <div class="flex-auto">
-          <label class="block font-bold mb-2" class="block font-bold mb-2" for="qty">Numebr of Reels</label>
-          <p-inputNumber formControlName="productQty" inputId="qty" [useGrouping]="false"> </p-inputNumber>
-        </div>
-      </div>
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="Weight">Gross Weight(Kgs)</label>
-        <p-inputNumber formControlName="productWeight" inputId="Weight" mode="decimal" locale="en-IN"
-          [useGrouping]="false" [minFractionDigits]="2">
-        </p-inputNumber>
-      </div>
+
+
       <div class="field col-12 md:col-3 lg:col-2 ">
         <label class="block font-bold mb-2" for="invoiceNumber">Invoice Number</label>
         <input formControlName="invoiceNumber" pInputText id="invoiceNumber" type="text" pInputText
@@ -80,19 +99,6 @@
       <div class="field col-12 md:col-3 lg:col-2 ">
         <label class="block font-bold mb-2" for="blDate">Invoice Date</label>
         <p-calendar formControlName="blDate" inputId="blDate" [showButtonBar]="true" dateFormat="dd/mm/yy"></p-calendar>
-      </div>
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="HSNCode">HSN Code</label>
-        <input formControlName="HSNCode" pInputText id="HSNCode" type="text" pInputText
-          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-
-
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="assessableValue">Assessable Value</label>
-        <p-inputNumber formControlName="assessableValue" mode="currency" inputId="assessableValue" currency="INR"
-          currencyDisplay="code" locale="en-IN">
-        </p-inputNumber>
       </div>
       <div class="field col-12 md:col-3 lg:col-2 ">
         <label class="block font-bold mb-2" for="vesselvoyage">Vessel Voyage</label>
@@ -121,32 +127,6 @@
         </p-dropdown>
       </div>
       <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="SupplierName">Supplier Name</label>
-        <input formControlName="supplierName" id="SupplierName" type="text" pInputText
-          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="supplierAddress">Supplier Address</label>
-        <textarea formControlName="supplierAddress" pInputTextarea rows="1" id="supplierAddress" type="text"
-          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
-      </div>
-
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="description">Goods Description</label>
-        <textarea formControlName="goodDescription" pInputTextarea rows="1" id="description" type="text"
-          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
-      </div>
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="brand">Product Brand</label>
-        <input formControlName="productBrand" id="brand" type="text" pInputText
-          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-      <div class="field col-12 md:col-3 lg:col-2 ">
-        <label class="block font-bold mb-2" for="Model">Model</label>
-        <input formControlName="productModel" id="Model" type="text" rows="4" pInputText
-          class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
-      </div>
-      <div class="field col-12 md:col-3 lg:col-2 ">
         <label class="block font-bold mb-2" for="ContainerNumber">Number of Containers</label>
         <input formControlName="containerNumber" id="ContainerNumber" type="text" pInputText
           class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
@@ -162,25 +142,75 @@
         <p-calendar formControlName="insuranceValidity" inputId="insuranceValidity" [showButtonBar]="true"
           dateFormat="dd/mm/yy"></p-calendar>
       </div>
-      <div class="field col-12">
-        <div formArrayName="wareHouses" class="grid">
-          <div *ngFor="let wareHouse of wareHouses.controls; index as i"
-            class="fadeinleft fadeout  animation-duration-500 animation-ease-in-out col-11 p-inputgroup p-fluid my-1">
-            <span [formGroupName]="i" class="p-input-icon-left">
-              <i class="font-bold">{{i+1}}</i>
-              <input formControlName="wareHouseName" type="text" pInputText placeholder="Enter WareHouse Address" />
-            </span>
-            <div class="ml-2">
-              <p-button icon="pi pi-trash" (onClick)="removeWareHouse(i)"></p-button>
-            </div>
+
+      <div class="field col-12 mt-3">
+        <div class="grid nested-grid">
+          <ng-container *ngFor="let boeProduct of boeProductDetails.controls; index as i">
+            <ng-container formArrayName="boeProductDetails">
+              <div class="col-11 mb-3">
+                <div class="grid row-gap-1">
+                  <div [formGroupName]="i" class="col-12 md:col-3 lg:col-2">
+                    <input formControlName="productHSNCode" type="text" pInputText placeholder="Enter HSNCode" />
+                  </div>
+                  <div [formGroupName]="i" class="col-12 md:col-3 lg:col-2">
+                    <p-dropdown formControlName="productName" [options]="productData" [editable]="true"
+                      optionLabel="name" filterBy="name" [showClear]="true" placeholder="Select Product">
+                      <ng-template let-productData pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                          <div>{{ productData.name }}</div>
+                        </div>
+                      </ng-template>
+                    </p-dropdown>
+
+                  </div>
+                  <div [formGroupName]="i" class="col-12 md:col-3 lg:col-2">
+                    <input formControlName="productBrand" type="text" pInputText placeholder="Enter Brand" />
+                  </div>
+                  <div [formGroupName]="i" class="col-12 md:col-3 lg:col-2">
+                    <input formControlName="productModel" type="text" pInputText placeholder="Enter Model" />
+                  </div>
+
+                  <div [formGroupName]="i" class="col-12 md:col-3 lg:col-2">
+                    <p-inputNumber formControlName="productQty" inputId="qty" [useGrouping]="false"
+                      placeholder="Enter QTY"> </p-inputNumber>
+
+                  </div>
+                  <div [formGroupName]="i" class="col-12 md:col-3 lg:col-2">
+                    <p-inputNumber formControlName="productWeight" inputId="qty" [useGrouping]="false"
+                      placeholder="Enter Weight(KGs)"> </p-inputNumber>
+
+                  </div>
+                  <div [formGroupName]="i" class="col-12 md:col-3 lg:col-2">
+                    <p-inputNumber formControlName="assessableValue" mode="currency" inputId="assessableValue"
+                      currency="INR" currencyDisplay="code" locale="en-IN" placeholder="Enter Value">
+                    </p-inputNumber>
+                  </div>
+                  <div [formGroupName]="i" class="col-12 md:col-3 lg:col-2">
+
+
+                    <textarea formControlName="productDescription" pInputTextarea rows="1" id="productDescription" placeholder="Enter Product Description"
+                      type="text"
+                      class="text-base text-color surface-overlay  border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+
+                  </div>
+                  <div class="col-12 md:col-3 lg:col-2">
+                    <p-button icon="pi pi-trash" (onClick)="removeBoeProductDetails(i)"></p-button>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <div class="col-1 mb-3 sm:text-center md:text-left align-self-end row-gap-1">
+            <p-button icon="pi pi-plus" pTooltip="Add Products" tooltipPosition="top"
+              (onClick)="newBoeProductDetails()"></p-button>
           </div>
-          <div class="col-1 sm:text-center md:text-left mt-1">
-            <p-button icon="pi pi-plus" pTooltip="Add WareHouse" tooltipPosition="top"
-              (onClick)="newWareHouse()"></p-button>
-          </div>
+
+
         </div>
       </div>
     </div>
+
   </div>
 
   <div *ngIf="isBoeFound" class="fadein  animation-duration-1500 card flex justify-content-center column-gap-3">

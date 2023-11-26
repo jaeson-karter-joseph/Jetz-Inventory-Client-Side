@@ -5,6 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppLayoutModule } from './modules/shared/app-layout/app-layout.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ConfigurationService } from './services/configuration.service';
+import { LocalStoreManager } from './services/local-store-manager.service';
+import { OidcHelperService } from './services/oidc-helper.service';
 
 @NgModule({
   declarations: [
@@ -15,8 +19,11 @@ import { AppLayoutModule } from './modules/shared/app-layout/app-layout.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     AppLayoutModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ConfigurationService,
+    LocalStoreManager,
+    OidcHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
